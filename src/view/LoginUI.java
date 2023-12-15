@@ -184,11 +184,11 @@ public class LoginUI extends javax.swing.JFrame {
         EmployeeService employeeService = (EmployeeService) theRegistry.lookup("employee");
         Employee theEmployee = employeeService.getEmployeeByUsername(username);
 
-        if (theEmployee != null && theEmployee.getIsActive() && theEmployee.getPassword().equals(hashedPassword)) {
+        if (theEmployee != null && theEmployee.getStatus().getStatusId() == 1 && theEmployee.getPassword().equals(hashedPassword)) {
             JOptionPane.showMessageDialog(this, "Login Successful!");
             
       
-        } else if( !theEmployee.getIsActive()){
+        } else if( theEmployee != null && theEmployee.getStatus().getStatusId() == 2){
              JOptionPane.showMessageDialog(this, "Account Locked, contact the administrator", "Authentication Error", JOptionPane.ERROR_MESSAGE);
         }
         else {
