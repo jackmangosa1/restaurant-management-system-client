@@ -15,7 +15,8 @@ import java.util.List;
 
 public class Customer implements Serializable{
     private int customerId;
-    private String fullName;
+    private String firstName;
+    private String lastName;
     private String address;
     private String telephoneNumber;
     Boolean isActive = true;
@@ -28,9 +29,10 @@ public class Customer implements Serializable{
         this.customerId = customerId;
     }
 
-    public Customer(int customerId, String fullName, String address, String telephoneNumber) {
+    public Customer(int customerId, String firstName, String lastName, String address, String telephoneNumber) {
         this.customerId = customerId;
-        this.fullName = fullName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.telephoneNumber = telephoneNumber;
     }
@@ -43,12 +45,20 @@ public class Customer implements Serializable{
         this.customerId = customerId;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -82,5 +92,7 @@ public class Customer implements Serializable{
     public void setOrders(List<CustomerOrder> orders) {
         this.orders = orders;
     }
+
+   
     
 }

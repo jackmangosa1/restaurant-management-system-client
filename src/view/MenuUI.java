@@ -18,7 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import model.*;
-import org.hibernate.Hibernate;
+
 
 /**
  *
@@ -348,7 +348,6 @@ public class MenuUI extends javax.swing.JFrame {
                    CategorySelectedRowIndex = source.getSelectedRow();
 
                     if (CategorySelectedRowIndex >= 0) {
-                        //int selectedRowId = Integer.parseInt(source.getValueAt(CategorySelectedRowIndex, 0).toString());
                         categoryIdInput.setText(source.getValueAt(CategorySelectedRowIndex, 0).toString());
                         categoryNameInput.setText(source.getValueAt(CategorySelectedRowIndex, 1).toString());
                     } 

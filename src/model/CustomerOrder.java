@@ -13,6 +13,7 @@ import java.util.List;
  * @author pc
  */
 public class CustomerOrder implements Serializable {
+    private static final long  serialVersionUID = -7471127250425493747L;
     private int orderId;
     private Customer customer;
     private List<OrderItem> orderItems;
