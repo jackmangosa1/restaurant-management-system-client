@@ -23,11 +23,9 @@ public class Employee implements Serializable {
     private String username;
     private String password;
     private EmployeeStatus status;
-    EmployeeStatus employeeStatus = new EmployeeStatus();
     
     public Employee() {
-       employeeStatus.setStatusId(2);
-       this.status = employeeStatus;
+        
     }
 
     public Employee(Integer employeeId) {

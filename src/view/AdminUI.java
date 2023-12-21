@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -32,6 +33,9 @@ public class AdminUI extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         addDataToTable();
+        addStatusesToCombo();
+        addRolesToCombo();
+        setupTableListener();
     }
 
     /**
@@ -45,32 +49,70 @@ public class AdminUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         employeeTable = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         accountStatus = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        updateStatusButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         employeeRole = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        addRoleButton = new javax.swing.JButton();
+        removeRoleButton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         employeeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Firstname", "Lastname", "Username", "Role", "Status"
+                "ID", "Firstname", "Lastname", "Username", "Role", "Status"
             }
         ));
         jScrollPane1.setViewportView(employeeTable);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(188, 186, 186)));
+
         accountStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setBackground(new java.awt.Color(245, 71, 72));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Update Status");
+        updateStatusButton.setBackground(new java.awt.Color(245, 71, 72));
+        updateStatusButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        updateStatusButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateStatusButton.setText("Update");
+        updateStatusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateStatusButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(updateStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(accountStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(accountStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(updateStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(188, 186, 186)));
 
         employeeRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         employeeRole.addActionListener(new java.awt.event.ActionListener() {
@@ -79,10 +121,61 @@ public class AdminUI extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(245, 71, 72));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Add Role");
+        addRoleButton.setBackground(new java.awt.Color(245, 71, 72));
+        addRoleButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        addRoleButton.setForeground(new java.awt.Color(255, 255, 255));
+        addRoleButton.setText("Add");
+        addRoleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRoleButtonActionPerformed(evt);
+            }
+        });
+
+        removeRoleButton.setBackground(new java.awt.Color(245, 71, 72));
+        removeRoleButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        removeRoleButton.setForeground(new java.awt.Color(255, 255, 255));
+        removeRoleButton.setText("Remove");
+        removeRoleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeRoleButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(addRoleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(removeRoleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(employeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(employeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addRoleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeRoleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel10.setText("ACCOUNT MANAGEMENT");
+
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel11.setText("ACCOUNT ROLE");
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel12.setText("ACCOUNT STATUS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,39 +183,80 @@ public class AdminUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(accountStatus, 0, 220, Short.MAX_VALUE)
-                    .addComponent(employeeRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(359, 359, 359)
+                        .addComponent(jLabel10)))
+                .addContainerGap(152, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addComponent(jLabel12)
+                    .addContainerGap(907, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(accountStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(employeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(204, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(92, 92, 92)
+                    .addComponent(jLabel12)
+                    .addContainerGap(438, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void  addStatusesToCombo(){
+        try{
+       Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+        EmployeeStatusService employeeStatusService = (EmployeeStatusService) theRegistry.lookup("employeeStatus");
+        List<EmployeeStatus> employeeStatusesList =  employeeStatusService.allEmployeeStatuses();
+        accountStatus.removeAllItems();
+        for(EmployeeStatus status : employeeStatusesList){
+            String statusName  = status.getStatusName();
+            accountStatus.addItem(statusName);
+        }
+        
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
+ public void addRolesToCombo(){
+     try{
+        Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+        EmployeeRoleService employeeRoleService = (EmployeeRoleService) theRegistry.lookup("role");
+        List<EmployeeRole> employeeRolesList =  employeeRoleService.allEmployeeRoles();
+        employeeRole.removeAllItems();
+        for(EmployeeRole role : employeeRolesList){
+            String roleName  = role.getRoleName();
+            employeeRole.addItem(roleName);
+        }
+     } catch(Exception ex){
+         ex.printStackTrace();
+     }
+ }
+   private Employee employeeToUpdate = new Employee();
      private void setupTableListener(){
         employeeTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -132,9 +266,9 @@ public class AdminUI extends javax.swing.JFrame {
                     int selectedRowIndex = source.getSelectedRow();
 
                     if (selectedRowIndex >= 0) {
-                        //firstNameTxt.setText(source.getValueAt(selectedRowIndex, 1).toString());
-                        
-                    }
+                        int employeeToUpdateId = Integer.parseInt(source.getValueAt(selectedRowIndex, 0).toString());
+                        employeeToUpdate.setEmployeeId(employeeToUpdateId);
+                    } 
                 }
             }
         });
@@ -157,14 +291,14 @@ private String convertRolesToString(Set<EmployeeRole> roles) {
         List<Employee> employeeList =  employeeService.allEmployees();
         DefaultTableModel employeeTableModel = (DefaultTableModel) employeeTable.getModel();
         employeeTableModel.setRowCount(0);
-        
+         Set<Integer> existingEmployeeIds = new HashSet<>();
         if (employeeList != null) {
             for (Employee item : employeeList) {
                     String rolesString = convertRolesToString(item.getRoles());
-
+                     int employeeId = item.getEmployeeId();
                     int selectedRow = employeeTable.getSelectedRow();
                     if (selectedRow >= 0) {
-                        //int employeeId = Integer.parseInt(employeeTableModel.getValueAt(selectedRow, 1).toString()) ;
+                        //int employeeToUpdateId = Integer.parseInt(employeeTableModel.getValueAt(selectedRow, 1).toString()) ;
                         //String firstName = employeeTableModel.getValueAt(selectedRow, 2).toString();
                          //String lastName = employeeTableModel.getValueAt(selectedRow, 3).toString();
                          //String phoneNumber = employeeTableModel.getValueAt(selectedRow, 3).toString();
@@ -173,13 +307,18 @@ private String convertRolesToString(Set<EmployeeRole> roles) {
                     }
                
                 // Add a new row with the buttons
-                employeeTableModel.addRow(new Object[]{
+                if(!existingEmployeeIds.contains(employeeId)){
+                    employeeTableModel.addRow(new Object[]{
+                    item.getEmployeeId(),
                     item.getFirstName(),
                     item.getLastName(),
                     item.getUsername(),
                     rolesString,
                     item.getStatus().getStatusName(),
                 });
+                    existingEmployeeIds.add(employeeId);
+                }
+                
             }
         } else {
             JOptionPane.showMessageDialog(this, "No record in the database");
@@ -192,6 +331,144 @@ private String convertRolesToString(Set<EmployeeRole> roles) {
     private void employeeRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeRoleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_employeeRoleActionPerformed
+
+    private void updateStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStatusButtonActionPerformed
+       try{
+          if (employeeToUpdate == null) {
+            JOptionPane.showMessageDialog(this, "Please select an employee from the table.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+          Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+          EmployeeService employeeService = (EmployeeService) theRegistry.lookup("employee");
+        Employee existingEmployee = employeeService.searchEmployee(employeeToUpdate);
+          if (existingEmployee == null) {
+            JOptionPane.showMessageDialog(this, "Employee not found in the database.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+         EmployeeStatus existingStatus = existingEmployee.getStatus();
+        if (existingStatus == null) {
+            JOptionPane.showMessageDialog(this, "Employee status not found in the database.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+      
+        EmployeeStatusService employeeStatusService = (EmployeeStatusService) theRegistry.lookup("employeeStatus");
+        String selectedStatusName = (String) accountStatus.getSelectedItem();
+        existingStatus.setStatusName(selectedStatusName);
+        int newStatusId = employeeStatusService.getEmployeeStatusIdByName(selectedStatusName);
+        existingStatus.setStatusId( newStatusId);
+
+        existingEmployee.setStatus(existingStatus);
+        Employee updatedEmployee = employeeService.updateEmployee(existingEmployee);
+
+        if (updatedEmployee != null) {
+            JOptionPane.showMessageDialog(this, "Employee status updated");
+            addDataToTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "Employee status not updated", "Input Error", JOptionPane.ERROR_MESSAGE);
+        }
+         
+       } catch(Exception ex){
+           ex.printStackTrace();
+       }
+    }//GEN-LAST:event_updateStatusButtonActionPerformed
+
+    private void addRoleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoleButtonActionPerformed
+        try{
+            
+        if (employeeToUpdate == null || employeeToUpdate.getEmployeeId() == null) {
+            JOptionPane.showMessageDialog(this, "Please select an employee from the table.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+   
+        String selectedRoleName = (String) employeeRole.getSelectedItem();
+        if (selectedRoleName == null || selectedRoleName.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a role to add.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+        EmployeeService employeeService = (EmployeeService) theRegistry.lookup("employee");
+        Employee existingEmployee = employeeService.searchEmployee(employeeToUpdate);
+
+        if (existingEmployee == null) {
+            JOptionPane.showMessageDialog(this, "Employee not found in the database.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        EmployeeRoleService employeeRoleService = (EmployeeRoleService) theRegistry.lookup("role");
+        EmployeeRole selectedRole = employeeRoleService.getRoleByName(selectedRoleName);
+
+        if (selectedRole == null) {
+            JOptionPane.showMessageDialog(this, "Selected role not found in the database.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (existingEmployee.getRoles().contains(selectedRole)) {
+            JOptionPane.showMessageDialog(this, "Role already assigned to the employee.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    
+        existingEmployee.getRoles().add(selectedRole);
+        Employee updatedEmployee = employeeService.updateEmployee(existingEmployee);
+        if (updatedEmployee != null) {
+            JOptionPane.showMessageDialog(this, "Role added to the employee");
+            addDataToTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to add role to the employee", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } 
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_addRoleButtonActionPerformed
+
+    private void removeRoleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRoleButtonActionPerformed
+         try {
+        if (employeeToUpdate == null || employeeToUpdate.getEmployeeId() == null) {
+            JOptionPane.showMessageDialog(this, "Please select an employee from the table.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String selectedRoleName = (String) employeeRole.getSelectedItem();
+        if (selectedRoleName == null || selectedRoleName.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a role to remove.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+        EmployeeService employeeService = (EmployeeService) theRegistry.lookup("employee");
+        Employee existingEmployee = employeeService.searchEmployee(employeeToUpdate);
+
+        if (existingEmployee == null) {
+            JOptionPane.showMessageDialog(this, "Employee not found in the database.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        EmployeeRoleService employeeRoleService = (EmployeeRoleService) theRegistry.lookup("role");
+        EmployeeRole selectedRole = employeeRoleService.getRoleByName(selectedRoleName);
+
+        if (selectedRole == null) {
+            JOptionPane.showMessageDialog(this, "Selected role not found in the database.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        existingEmployee.getRoles().remove(selectedRole);
+        Employee updatedEmployee = employeeService.updateEmployee(existingEmployee);
+        
+        if (!existingEmployee.getRoles().contains(selectedRole)) {
+            JOptionPane.showMessageDialog(this, "Selected role is not assigned to the employee.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (updatedEmployee != null) {
+            JOptionPane.showMessageDialog(this, "Role removed from the employee");
+            addDataToTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to remove role from the employee", "Input Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+    }//GEN-LAST:event_removeRoleButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,10 +507,16 @@ private String convertRolesToString(Set<EmployeeRole> roles) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> accountStatus;
+    private javax.swing.JButton addRoleButton;
     private javax.swing.JComboBox<String> employeeRole;
     private javax.swing.JTable employeeTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton removeRoleButton;
+    private javax.swing.JButton updateStatusButton;
     // End of variables declaration//GEN-END:variables
 }

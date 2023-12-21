@@ -252,6 +252,9 @@ public class RegisterUI extends javax.swing.JFrame {
         }
         String hashedPassword = hashPassword(password);
         Employee theEmployee = new Employee();
+        EmployeeStatus employeeStatusObj = new EmployeeStatus();
+        employeeStatusObj.setStatusId(2);
+        theEmployee.setStatus(employeeStatusObj);
         String selectedRoleName = (String) employeeRole.getSelectedItem();
         EmployeeRoleService employeeRoleservice = (EmployeeRoleService) theRegistry.lookup("role");
         EmployeeRole selectedRoleObj = employeeRoleservice.getRoleByName(selectedRoleName);
