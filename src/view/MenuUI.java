@@ -32,8 +32,11 @@ public class MenuUI extends javax.swing.JFrame {
     public MenuUI() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        addDataToTable();
-        setupTableListener();
+        addDataToCategoryTable();
+        setupCategoryTableListener();
+        populateComboBox();
+        addDataToDishTable();
+        setupDishTableListener();
     }
 
     /**
@@ -55,16 +58,20 @@ public class MenuUI extends javax.swing.JFrame {
         updateCategoryButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         dishCategoryList = new javax.swing.JComboBox<>();
-        categoryIdTxt1 = new javax.swing.JTextField();
-        categoryIdTxt3 = new javax.swing.JTextField();
+        dishPriceInput = new javax.swing.JTextField();
+        dishNameInput = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         dishTable = new javax.swing.JTable();
-        categoryIdTxt4 = new javax.swing.JTextField();
+        dishIdInput = new javax.swing.JTextField();
         deleteCategoryButton = new javax.swing.JButton();
         insertCategoryButton = new javax.swing.JButton();
         insertDishButton = new javax.swing.JButton();
         updateDishButton = new javax.swing.JButton();
-        deleteDishButton = new javax.swing.JButton();
+        Delete = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,19 +126,15 @@ public class MenuUI extends javax.swing.JFrame {
             }
         });
 
-        categoryIdTxt1.setEditable(false);
-        categoryIdTxt1.setText("Select a category to get an ID");
-        categoryIdTxt1.addActionListener(new java.awt.event.ActionListener() {
+        dishPriceInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoryIdTxt1ActionPerformed(evt);
+                dishPriceInputActionPerformed(evt);
             }
         });
 
-        categoryIdTxt3.setEditable(false);
-        categoryIdTxt3.setText("Select a category to get an ID");
-        categoryIdTxt3.addActionListener(new java.awt.event.ActionListener() {
+        dishNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoryIdTxt3ActionPerformed(evt);
+                dishNameInputActionPerformed(evt);
             }
         });
 
@@ -143,16 +146,16 @@ public class MenuUI extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Category", "Price"
+                "ID", "Name", "Price", "Category"
             }
         ));
         jScrollPane2.setViewportView(dishTable);
 
-        categoryIdTxt4.setEditable(false);
-        categoryIdTxt4.setText("Select a category to get an ID");
-        categoryIdTxt4.addActionListener(new java.awt.event.ActionListener() {
+        dishIdInput.setEditable(false);
+        dishIdInput.setText("Select a dish to get an ID");
+        dishIdInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoryIdTxt4ActionPerformed(evt);
+                dishIdInputActionPerformed(evt);
             }
         });
 
@@ -192,7 +195,7 @@ public class MenuUI extends javax.swing.JFrame {
         updateDishButton.setBackground(new java.awt.Color(245, 71, 72));
         updateDishButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         updateDishButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateDishButton.setText("Insert");
+        updateDishButton.setText("Update");
         updateDishButton.setBorder(null);
         updateDishButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,16 +203,33 @@ public class MenuUI extends javax.swing.JFrame {
             }
         });
 
-        deleteDishButton.setBackground(new java.awt.Color(245, 71, 72));
-        deleteDishButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        deleteDishButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteDishButton.setText("Insert");
-        deleteDishButton.setBorder(null);
-        deleteDishButton.addActionListener(new java.awt.event.ActionListener() {
+        Delete.setBackground(new java.awt.Color(245, 71, 72));
+        Delete.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        Delete.setForeground(new java.awt.Color(255, 255, 255));
+        Delete.setText("Delete");
+        Delete.setBorder(null);
+        Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteDishButtonActionPerformed(evt);
+                DeleteActionPerformed(evt);
             }
         });
+
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel7.setText("Dish Category");
+        jLabel7.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                jLabel7ComponentHidden(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel5.setText("Dish Name");
+
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel11.setText("Dish ID");
+
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel6.setText("Dish Price");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,30 +238,29 @@ public class MenuUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(categoryNameInput)
+                        .addComponent(categoryIdInput, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(insertCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(48, 48, 48)
+                            .addComponent(updateCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(43, 43, 43)
+                            .addComponent(deleteCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel10)
+                        .addComponent(jScrollPane1))
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel9))
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel9))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(categoryNameInput)
-                            .addComponent(categoryIdInput, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(insertCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(updateCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
-                                .addComponent(deleteCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel10)
-                            .addComponent(jScrollPane1))
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(categoryIdTxt3)
+                                            .addComponent(dishNameInput)
                                             .addComponent(dishCategoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(113, 113, 113))
                                     .addGroup(layout.createSequentialGroup()
@@ -251,14 +270,24 @@ public class MenuUI extends javax.swing.JFrame {
                                                 .addGap(42, 42, 42)
                                                 .addComponent(updateDishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(40, 40, 40)
-                                                .addComponent(deleteDishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel8))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(categoryIdTxt1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                                    .addComponent(categoryIdTxt4)))
-                            .addComponent(jScrollPane2))
-                        .addGap(59, 59, 59))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(311, 311, 311)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(331, 331, 331)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dishPriceInput, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dishIdInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel6))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,25 +297,31 @@ public class MenuUI extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel10))
                 .addGap(26, 26, 26)
-                .addComponent(jLabel9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel11))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dishCategoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(categoryIdTxt4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
+                            .addComponent(dishIdInput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(categoryIdInput)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(categoryIdInput, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(jLabel12)))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(categoryNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(categoryIdTxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(categoryIdTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dishNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dishPriceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(deleteCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,37 +329,56 @@ public class MenuUI extends javax.swing.JFrame {
                             .addComponent(insertCategoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(insertDishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(updateDishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteDishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(83, 83, 83))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-     int selectedRowIndex;
-   private void setupTableListener(){
+     int CategorySelectedRowIndex;
+   private void setupCategoryTableListener(){
       dishCategoryTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     JTable source = dishCategoryTable;
-                   selectedRowIndex = source.getSelectedRow();
+                   CategorySelectedRowIndex = source.getSelectedRow();
 
-                    if (selectedRowIndex >= 0) {
-                        //int selectedRowId = Integer.parseInt(source.getValueAt(selectedRowIndex, 0).toString());
-                        categoryIdInput.setText(source.getValueAt(selectedRowIndex, 0).toString());
-                        categoryNameInput.setText(source.getValueAt(selectedRowIndex, 1).toString());
+                    if (CategorySelectedRowIndex >= 0) {
+                        //int selectedRowId = Integer.parseInt(source.getValueAt(CategorySelectedRowIndex, 0).toString());
+                        categoryIdInput.setText(source.getValueAt(CategorySelectedRowIndex, 0).toString());
+                        categoryNameInput.setText(source.getValueAt(CategorySelectedRowIndex, 1).toString());
+                    } 
+                }
+            }
+        });
+    }  
+   
+   int DishSelectedRowIndex;
+     private void setupDishTableListener(){
+      dishTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    JTable source = dishTable;
+                   DishSelectedRowIndex = source.getSelectedRow();
+
+                    if ( DishSelectedRowIndex >= 0) {
+                    
+                        dishIdInput.setText(source.getValueAt(DishSelectedRowIndex, 0).toString());
+                        dishNameInput.setText(source.getValueAt(DishSelectedRowIndex, 1).toString());
+                        dishPriceInput.setText(source.getValueAt(DishSelectedRowIndex, 2).toString());
                     } 
                 }
             }
         });
     }  
     
-    
  
-  private void addDataToTable(){
+  private void addDataToCategoryTable(){
            try{
         Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
         DishCategoryService dishCategoryService = (DishCategoryService) theRegistry.lookup("category");
@@ -364,6 +418,46 @@ public class MenuUI extends javax.swing.JFrame {
            }
     }
   
+  private void addDataToDishTable(){
+           try{
+        Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+        DishService dishService = (DishService) theRegistry.lookup("dish");
+        List<Dish> dishList =  dishService.allDishes();
+        DefaultTableModel dishTableModel = (DefaultTableModel) dishTable.getModel();
+        dishTableModel.setRowCount(0);
+        
+        if (dishList != null) {
+            for (Dish item : dishList) {
+                   
+                     
+                    int selectedRow = dishTable.getSelectedRow();
+                    if (selectedRow >= 0) {
+                   
+                         String dishId =  dishTableModel.getValueAt(selectedRow, 1).toString();
+                         String dishName =  dishTableModel.getValueAt(selectedRow, 2).toString();
+                         categoryIdInput.setText(dishId);
+                         categoryNameInput.setText(dishName);
+                         
+                    }
+ 
+                    dishTableModel.addRow(new Object[]{
+                    item.getDishId(),
+                    item.getName(),
+                    item.getPrice(),
+                    (item.getCategory() != null) ? item.getCategory().getCategoryName() : "",
+                    
+                });
+      
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No record in the database");
+        }
+        
+           } catch(Exception ex){
+               ex.printStackTrace();
+           }
+    }
+  
 
    
     private void categoryIdInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryIdInputActionPerformed
@@ -371,7 +465,7 @@ public class MenuUI extends javax.swing.JFrame {
     }//GEN-LAST:event_categoryIdInputActionPerformed
 
     private void updateCategoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCategoryButtonActionPerformed
-          if (selectedRowIndex  < 0) {
+          if (CategorySelectedRowIndex  < 0) {
               JOptionPane.showMessageDialog(this, "Please select a row first!", "Input Error", JOptionPane.ERROR_MESSAGE);
             return; 
           }
@@ -394,7 +488,8 @@ public class MenuUI extends javax.swing.JFrame {
         DishCategory dishCategoryObj = dishCategoryService.updateDishCategory(theDishCategory);
 
         if (dishCategoryObj != null) {
-            addDataToTable();
+            addDataToCategoryTable();
+            populateComboBox();
             JOptionPane.showMessageDialog(this, "Data Saved");
             categoryIdInput.setText("");
              categoryNameInput.setText("");
@@ -412,20 +507,20 @@ public class MenuUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dishCategoryListActionPerformed
 
-    private void categoryIdTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryIdTxt1ActionPerformed
+    private void dishPriceInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dishPriceInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_categoryIdTxt1ActionPerformed
+    }//GEN-LAST:event_dishPriceInputActionPerformed
 
-    private void categoryIdTxt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryIdTxt3ActionPerformed
+    private void dishNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dishNameInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_categoryIdTxt3ActionPerformed
+    }//GEN-LAST:event_dishNameInputActionPerformed
 
-    private void categoryIdTxt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryIdTxt4ActionPerformed
+    private void dishIdInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dishIdInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_categoryIdTxt4ActionPerformed
+    }//GEN-LAST:event_dishIdInputActionPerformed
 
     private void deleteCategoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCategoryButtonActionPerformed
-        if (selectedRowIndex  < 0) {
+        if (CategorySelectedRowIndex  < 0) {
               JOptionPane.showMessageDialog(this, "Please select a row first!", "Input Error", JOptionPane.ERROR_MESSAGE);
             return; 
           }
@@ -442,7 +537,8 @@ public class MenuUI extends javax.swing.JFrame {
         DishCategory dishCategoryObj = dishCategoryService.deleteDishCategory(theDishCategory);
 
         if (dishCategoryObj != null) {
-            addDataToTable();
+            addDataToCategoryTable();
+            populateComboBox();
             JOptionPane.showMessageDialog(this, "Data Deleted");
             categoryIdInput.setText("");
              categoryNameInput.setText("");
@@ -474,7 +570,8 @@ public class MenuUI extends javax.swing.JFrame {
         DishCategory dishCategoryObj = dishCategoryService.recordDishCategory(theDishCategory);
 
         if (dishCategoryObj != null) {
-            addDataToTable();
+            addDataToCategoryTable();
+            populateComboBox();
             categoryIdInput.setText("");
              categoryNameInput.setText("");
             JOptionPane.showMessageDialog(this, "Data Saved");
@@ -488,18 +585,160 @@ public class MenuUI extends javax.swing.JFrame {
         ex.printStackTrace();
     }
     }//GEN-LAST:event_insertCategoryButtonActionPerformed
-
+     private  void populateComboBox(){
+          try {
+        Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+        DishCategoryService service = (DishCategoryService) theRegistry.lookup("category");
+        List<String> categoryNames = service.allCategoryNames();
+        categoryNames.add(0, "Select a category");
+        dishCategoryList.setModel(new DefaultComboBoxModel<>(categoryNames.toArray(new String[0])));
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+    }
     private void insertDishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertDishButtonActionPerformed
-        // TODO add your handling code here:
+         try {
+        String dishName = dishNameInput.getText().trim();
+        String dishPrice = dishPriceInput.getText();
+        String dishCategory = dishCategoryList.getSelectedItem().toString();
+        
+       
+
+        if (dishName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in the dish name!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        } else if(dishCategory == null || dishCategory.isEmpty() || dishCategory.equals("Select a category")){
+            JOptionPane.showMessageDialog(this, "Please select a category.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        else if(dishPrice.isEmpty()){
+             JOptionPane.showMessageDialog(this, "Please fill in the dish price!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        } else if(dishCategory.isEmpty()){
+             JOptionPane.showMessageDialog(this, "Please select the dish category!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
+        else {  
+            
+        Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+        DishService dishService = (DishService) theRegistry.lookup("dish");
+        Dish theDish = new Dish();
+        theDish.setName(dishName);
+        theDish.setPrice(Double.parseDouble(dishPrice));
+       
+        DishCategoryService dishCategoryService = (DishCategoryService) theRegistry.lookup("category");
+        DishCategory dishCategoryObj = dishCategoryService.getCategoryByName(dishCategory);
+        theDish.setCategory(dishCategoryObj);
+        
+        Dish dishObj = dishService.recordDish(theDish);
+        
+          if (dishObj != null) {
+            addDataToDishTable();
+            JOptionPane.showMessageDialog(this, "Data Saved!");
+            dishIdInput.setText("");
+            dishNameInput.setText("");
+            dishPriceInput.setText("");
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Data Not saved!");
+        }
+       
+        }
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
     }//GEN-LAST:event_insertDishButtonActionPerformed
 
     private void updateDishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDishButtonActionPerformed
-        // TODO add your handling code here:
+         if (DishSelectedRowIndex  < 0) {
+              JOptionPane.showMessageDialog(this, "Please select a row first!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+          }
+        try {
+            int dishId = Integer.parseInt(dishIdInput.getText().trim()); 
+            String dishName = dishNameInput.getText().trim();
+            String dishPrice = dishPriceInput.getText().trim();
+            String dishCategory = dishCategoryList.getSelectedItem().toString();
+
+
+            if (dishName.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill in the dish name!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return; 
+            } else if(dishCategory == null || dishCategory.isEmpty() || dishCategory.equals("Select a category")){
+                JOptionPane.showMessageDialog(this, "Please select a category.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } 
+            else if(dishPrice.isEmpty()){
+                 JOptionPane.showMessageDialog(this, "Please fill in the dish price", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } 
+            else {  
+
+            Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+            DishService dishService = (DishService) theRegistry.lookup("dish");
+            Dish theDish = new Dish();
+            theDish.setDishId(dishId);
+            theDish.setName(dishName);
+            theDish.setPrice(Double.parseDouble(dishPrice));
+
+            DishCategoryService dishCategoryService = (DishCategoryService) theRegistry.lookup("category");
+            DishCategory dishCategoryObj = dishCategoryService.getCategoryByName(dishCategory);
+            theDish.setCategory(dishCategoryObj);
+
+            Dish dishObj = dishService.updateDish(theDish);
+
+              if (dishObj != null) {
+                addDataToDishTable();
+                JOptionPane.showMessageDialog(this, "Data Saved!");
+                dishIdInput.setText("");
+                dishNameInput.setText("");
+                dishPriceInput.setText("");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Data Not saved!");
+            }
+            }
+       
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
     }//GEN-LAST:event_updateDishButtonActionPerformed
 
-    private void deleteDishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDishButtonActionPerformed
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+         if (DishSelectedRowIndex  < 0) {
+              JOptionPane.showMessageDialog(this, "Please select a row first!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+          }
+        try {
+        int dishId = Integer.parseInt(dishIdInput.getText().trim()); 
+        
+             
+        Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+        DishService dishService = (DishService) theRegistry.lookup("dish");
+        Dish theDish = new Dish();
+        theDish.setDishId(dishId);
+       
+        Dish dishObj = dishService.deleteDish(theDish);
+
+        if (dishObj != null) {
+            addDataToDishTable();
+            JOptionPane.showMessageDialog(this, "Data Deleted");
+            dishIdInput.setText("");
+            dishNameInput.setText("");
+             dishPriceInput.setText("");
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Data Not Deleted!");
+        }
+        
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+    }//GEN-LAST:event_DeleteActionPerformed
+
+    private void jLabel7ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel7ComponentHidden
         // TODO add your handling code here:
-    }//GEN-LAST:event_deleteDishButtonActionPerformed
+    }//GEN-LAST:event_jLabel7ComponentHidden
 
     /**
      * @param args the command line arguments
@@ -540,20 +779,24 @@ public class MenuUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Delete;
     private javax.swing.JTextField categoryIdInput;
-    private javax.swing.JTextField categoryIdTxt1;
-    private javax.swing.JTextField categoryIdTxt3;
-    private javax.swing.JTextField categoryIdTxt4;
     private javax.swing.JTextField categoryNameInput;
     private javax.swing.JButton deleteCategoryButton;
-    private javax.swing.JButton deleteDishButton;
     private javax.swing.JComboBox<String> dishCategoryList;
     private javax.swing.JTable dishCategoryTable;
+    private javax.swing.JTextField dishIdInput;
+    private javax.swing.JTextField dishNameInput;
+    private javax.swing.JTextField dishPriceInput;
     private javax.swing.JTable dishTable;
     private javax.swing.JButton insertCategoryButton;
     private javax.swing.JButton insertDishButton;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;

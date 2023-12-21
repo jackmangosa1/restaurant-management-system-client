@@ -26,34 +26,32 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="categoryNameInput" alignment="0" max="32767" attributes="0"/>
+                      <Component id="categoryIdInput" alignment="0" pref="501" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="insertCategoryButton" min="-2" pref="101" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="updateCategoryButton" min="-2" pref="101" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="deleteCategoryButton" min="-2" pref="101" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane2" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="categoryNameInput" alignment="0" max="32767" attributes="0"/>
-                          <Component id="categoryIdInput" alignment="0" pref="501" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="insertCategoryButton" min="-2" pref="101" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="updateCategoryButton" min="-2" pref="101" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="deleteCategoryButton" min="-2" pref="101" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="categoryIdTxt3" max="32767" attributes="0"/>
+                                          <Component id="dishNameInput" max="32767" attributes="0"/>
                                           <Component id="dishCategoryList" alignment="0" min="-2" pref="292" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="113" pref="113" max="-2" attributes="0"/>
@@ -65,23 +63,37 @@
                                               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                                               <Component id="updateDishButton" min="-2" pref="101" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="deleteDishButton" min="-2" pref="101" max="-2" attributes="0"/>
+                                              <Component id="Delete" min="-2" pref="101" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="categoryIdTxt1" pref="292" max="32767" attributes="0"/>
-                                  <Component id="categoryIdTxt4" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="311" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jScrollPane2" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="331" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="dishPriceInput" alignment="1" max="32767" attributes="0"/>
+                          <Component id="dishIdInput" alignment="1" pref="292" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,29 +106,37 @@
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="dishCategoryList" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="categoryIdTxt4" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="dishIdInput" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="categoryIdInput" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="categoryIdInput" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="categoryNameInput" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="categoryIdTxt3" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="categoryIdTxt1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="dishNameInput" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="dishPriceInput" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -125,12 +145,12 @@
                           <Component id="insertCategoryButton" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="insertDishButton" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="updateDishButton" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="deleteDishButton" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="Delete" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="131" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane2" min="-2" pref="131" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
           </Group>
@@ -255,22 +275,14 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="categoryIdTxt1">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="Select a category to get an ID"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="dishPriceInput">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryIdTxt1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dishPriceInputActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="categoryIdTxt3">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="Select a category to get an ID"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="dishNameInput">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryIdTxt3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dishNameInputActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -286,8 +298,8 @@
               <Table columnCount="4" rowCount="4">
                 <Column editable="true" title="ID" type="java.lang.Object"/>
                 <Column editable="true" title="Name" type="java.lang.Object"/>
-                <Column editable="true" title="Category" type="java.lang.Object"/>
                 <Column editable="true" title="Price" type="java.lang.Object"/>
+                <Column editable="true" title="Category" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -321,13 +333,13 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="categoryIdTxt4">
+    <Component class="javax.swing.JTextField" name="dishIdInput">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="Select a category to get an ID"/>
+        <Property name="text" type="java.lang.String" value="Select a dish to get an ID"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryIdTxt4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dishIdInputActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="deleteCategoryButton">
@@ -401,7 +413,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Insert"/>
+        <Property name="text" type="java.lang.String" value="Update"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -410,7 +422,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateDishButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="deleteDishButton">
+    <Component class="javax.swing.JButton" name="Delete">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="48" green="47" red="f5" type="rgb"/>
@@ -421,14 +433,49 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Insert"/>
+        <Property name="text" type="java.lang.String" value="Delete"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteDishButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Dish Category"/>
+      </Properties>
+      <Events>
+        <EventHandler event="componentHidden" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="jLabel7ComponentHidden"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Dish Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Dish ID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Dish Price"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
