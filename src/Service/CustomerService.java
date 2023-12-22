@@ -18,4 +18,6 @@ public interface CustomerService extends Remote{
     Customer deleteCustomer(Customer customerObj ) throws RemoteException;
     Customer searchCustomer(Customer customerObj ) throws RemoteException;
     List<Customer> allCustomers() throws RemoteException;
+    List<CustomerOrder> allCustomerOrders() throws RemoteException;
+    boolean isPhoneNumberExists(String phoneNumber) throws RemoteException;
 }

@@ -304,7 +304,9 @@ public class CustomerUI extends javax.swing.JFrame {
     }
     private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
           try {
-        String firstName = firstNameInput.getText().trim();
+       Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
+       CustomerService  customerService = (CustomerService) theRegistry.lookup("customer");    
+       String firstName = firstNameInput.getText().trim();
        String lastName = lastNameInput.getText().trim();
        String address = addressInput.getText().trim();
        String phoneNumber = phoneNumberInput.getText().trim();
@@ -324,11 +326,12 @@ public class CustomerUI extends javax.swing.JFrame {
         } else if(!isValidPhoneNumber(phoneNumber)){
             JOptionPane.showMessageDialog(this, "Phone number not valid!", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
+        } else if(customerService.isPhoneNumberExists(phoneNumber)){
+            JOptionPane.showMessageDialog(this, "Phone number already exist!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         else {  
-            
-        Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
-        CustomerService  customerService = (CustomerService) theRegistry.lookup("customer");
+          
         Customer theCustomer = new   Customer();
         theCustomer.setFirstName(firstName);
         theCustomer.setLastName(lastName);
@@ -363,7 +366,7 @@ public class CustomerUI extends javax.swing.JFrame {
         try {
         int selectedcustomerId = customerId;
         String firstName = firstNameInput.getText().trim();
-        String lastName = firstNameInput.getText().trim();
+        String lastName = lastNameInput.getText().trim();
         String address = addressInput.getText().trim();
         String phoneNumber = phoneNumberInput.getText().trim();
        
