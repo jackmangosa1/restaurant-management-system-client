@@ -185,8 +185,12 @@ public class LoginUI extends javax.swing.JFrame {
         Employee theEmployee = employeeService.getEmployeeByUsername(username);
 
         if (theEmployee != null && theEmployee.getStatus().getStatusId() == 1 && theEmployee.getPassword().equals(hashedPassword)) {
+            SessionManager.setLoggedInEmployee(theEmployee);
             JOptionPane.showMessageDialog(this, "Login Successful!");
             
+            this.setVisible(false);
+            CashierUI cashierUI = new CashierUI();
+            cashierUI.setVisible(true);
       
         } else if( theEmployee != null && theEmployee.getStatus().getStatusId() == 2){
              JOptionPane.showMessageDialog(this, "Account Locked, contact the administrator", "Authentication Error", JOptionPane.ERROR_MESSAGE);

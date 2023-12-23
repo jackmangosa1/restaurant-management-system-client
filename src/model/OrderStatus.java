@@ -17,7 +17,7 @@ import javax.persistence.*;
 
 public class OrderStatus implements Serializable {
     private int statusId;
-    private String statusName;
+    private String statusName = "In progress";
     private List<CustomerOrder> orderStatus =  new ArrayList<>();
 
     public OrderStatus() {

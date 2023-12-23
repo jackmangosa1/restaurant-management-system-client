@@ -7,6 +7,7 @@
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/LoginUI.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/MenuUI.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/EmployeeStatusService.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/CashierUI.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/Employee.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/CustomerUI.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/AdminUI.java</file>
@@ -16,9 +17,14 @@
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/RegisterUI.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/Dish.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/DishCategory.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/OrderItemService.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/Customer.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/SessionManager.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/EmployeeRole.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/CartItem.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/OrderItem.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/CustomerService.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/OrderStatusService.java</file>
         </group>
     </open-files>
 </project-private>
