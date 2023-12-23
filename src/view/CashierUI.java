@@ -529,7 +529,9 @@ int selectedDish;
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void dashboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardButtonActionPerformed
-       
+       this.setVisible(false);
+       DashboardUI dashboardUI = new DashboardUI();
+       dashboardUI.setVisible(true);
     }//GEN-LAST:event_dashboardButtonActionPerformed
 
     private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
@@ -901,9 +903,9 @@ int selectedDish;
     }//GEN-LAST:event_printBillButtonActionPerformed
 
     private void ordersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersButtonActionPerformed
-//        OrdersForm ordersForm = new OrdersForm();
-//        this.setVisible(false);
-//        ordersForm.setVisible(true);
+        KitchenUI kitchenUI = new KitchenUI();
+        this.setVisible(false);
+        kitchenUI.setVisible(true);
     }//GEN-LAST:event_ordersButtonActionPerformed
 
     /**
