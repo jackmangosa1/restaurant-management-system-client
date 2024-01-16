@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package view;
-
 import Service.*;
 import java.awt.Font;
 import model.*;
@@ -23,22 +22,21 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author pc
  */
-public class KitchenUI extends javax.swing.JFrame {
+public class DeliveryUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form KitchenUI
+     * Creates new form DeliveryUI
      */
-    public KitchenUI() {
+    public DeliveryUI() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
         addDataToTable();
         setupTableListener();
         populateComboBox();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -50,79 +48,17 @@ public class KitchenUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        orderStatusList = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        orderTable = new javax.swing.JTable();
-        jLabel10 = new javax.swing.JLabel();
-        orderDetailsPanel = new javax.swing.JPanel();
-        updateOrderStatusButton = new javax.swing.JButton();
-        MenuToHome = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        orderStatusList = new javax.swing.JComboBox<>();
+        updateOrderStatusButton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        orderTable = new javax.swing.JTable();
+        MenuToHome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(226, 232, 233));
-
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel9.setText("Order Status");
-
-        orderStatusList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        orderStatusList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderStatusListActionPerformed(evt);
-            }
-        });
-
-        orderTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Order ID", "Order date", "Total Amount", "Order Status"
-            }
-        ));
-        jScrollPane1.setViewportView(orderTable);
-
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel10.setText("Order List");
-
-        orderDetailsPanel.setBackground(new java.awt.Color(226, 232, 233));
-
-        javax.swing.GroupLayout orderDetailsPanelLayout = new javax.swing.GroupLayout(orderDetailsPanel);
-        orderDetailsPanel.setLayout(orderDetailsPanelLayout);
-        orderDetailsPanelLayout.setHorizontalGroup(
-            orderDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        orderDetailsPanelLayout.setVerticalGroup(
-            orderDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        updateOrderStatusButton.setBackground(new java.awt.Color(245, 71, 72));
-        updateOrderStatusButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        updateOrderStatusButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateOrderStatusButton.setText("Update Status");
-        updateOrderStatusButton.setBorder(null);
-        updateOrderStatusButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateOrderStatusButtonActionPerformed(evt);
-            }
-        });
-
-        MenuToHome.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        MenuToHome.setText("Go Back to Home");
-        MenuToHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuToHomeMouseClicked(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(245, 71, 73));
 
@@ -146,71 +82,102 @@ public class KitchenUI extends javax.swing.JFrame {
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
-                            .addComponent(orderStatusList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(updateOrderStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 35, Short.MAX_VALUE)
-                        .addComponent(MenuToHome))
-                    .addComponent(orderDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(31, 31, 31))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(128, 128, 128)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(orderStatusList, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(updateOrderStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(orderDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(MenuToHome)
-                .addGap(22, 22, 22))
-        );
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel9.setText("Order Status");
+
+        orderStatusList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orderStatusList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderStatusListActionPerformed(evt);
+            }
+        });
+
+        updateOrderStatusButton.setBackground(new java.awt.Color(245, 71, 72));
+        updateOrderStatusButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        updateOrderStatusButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateOrderStatusButton.setText("Update Status");
+        updateOrderStatusButton.setBorder(null);
+        updateOrderStatusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateOrderStatusButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel10.setText("Order List");
+
+        orderTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Order ID", "Order date", "Total Amount", "Order Status"
+            }
+        ));
+        jScrollPane1.setViewportView(orderTable);
+
+        MenuToHome.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        MenuToHome.setText("Go Back to Home");
+        MenuToHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuToHomeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(373, 373, 373)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(orderStatusList, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateOrderStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(429, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(MenuToHome)
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(16, 16, 16)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(orderStatusList, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(updateOrderStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addComponent(MenuToHome)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- int SelectedRowIndex = -1;
- int orderId;
+    int SelectedRowIndex = -1;
+    int orderId;
    
    private void setupTableListener(){
       orderTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -222,46 +189,12 @@ public class KitchenUI extends javax.swing.JFrame {
 
                 if (SelectedRowIndex >= 0) {
                     orderId = Integer.parseInt(source.getValueAt(SelectedRowIndex, 0).toString());
-                    try {
-                        Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
-                        OrderItemService orderItemService = (OrderItemService) theRegistry.lookup("orderItem");
-                        List<OrderItem> orderItemsList = orderItemService.getOrderItemsByOrderId(orderId);
-
-                        orderDetailsPanel.removeAll();
-
-                        // Create a titled border for orderDetailsPanel
-                        orderDetailsPanel.setBorder(BorderFactory.createTitledBorder("Order Details"));
-                        orderDetailsPanel.setLayout(new BoxLayout(orderDetailsPanel, BoxLayout.Y_AXIS));
-
-                        for (OrderItem item : orderItemsList) {
-                            JLabel itemNameLabel = new JLabel("Dish: " + item.getDish().getName());
-                            JLabel quantityLabel = new JLabel("Quantity: " + item.getQuantity());
-
-                            // Set a bigger font for labels
-                            Font biggerFont = itemNameLabel.getFont().deriveFont(Font.BOLD, 16f);
-                            itemNameLabel.setFont(biggerFont);
-                            quantityLabel.setFont(biggerFont);
-
-                            // Add labels to the orderDetailsPanel
-                            orderDetailsPanel.add(itemNameLabel);
-                            orderDetailsPanel.add(quantityLabel);
-                        }
-
-                        // Repaint the panel to reflect changes
-                        orderDetailsPanel.revalidate();
-                        orderDetailsPanel.repaint();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
                 }
             }
         }
     });
-    }  
-   
-  
- 
- private  void populateComboBox(){
+    }   
+   private  void populateComboBox(){
           try {
         Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
         OrderStatusService service = (OrderStatusService) theRegistry.lookup("orderStatus");
@@ -273,7 +206,7 @@ public class KitchenUI extends javax.swing.JFrame {
         ex.printStackTrace();
     }
     }
-     private void addDataToTable(){
+    private void addDataToTable(){
         try {
         Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
         CustomerOrderService customerOrderService = (CustomerOrderService) theRegistry.lookup("order");
@@ -309,19 +242,17 @@ public class KitchenUI extends javax.swing.JFrame {
     }//GEN-LAST:event_orderStatusListActionPerformed
 
     private void updateOrderStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateOrderStatusButtonActionPerformed
-  
-    if (SelectedRowIndex < 0) {
-        JOptionPane.showMessageDialog(this, "Please select a row first!", "Input Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-        
+
+        if (SelectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row first!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         try {
             // Get the services from the registry
             Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
             CustomerOrderService customerOrderService = (CustomerOrderService) theRegistry.lookup("order");
             OrderStatusService orderStatusService = (OrderStatusService) theRegistry.lookup("orderStatus");
-            
 
             // Get the selected order
             CustomerOrder customerOrder = new CustomerOrder();
@@ -382,7 +313,7 @@ public class KitchenUI extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For items see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -392,20 +323,20 @@ public class KitchenUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KitchenUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KitchenUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KitchenUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KitchenUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KitchenUI().setVisible(true);
+                new DeliveryUI().setVisible(true);
             }
         });
     }
@@ -415,10 +346,8 @@ public class KitchenUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel orderDetailsPanel;
     private javax.swing.JComboBox<String> orderStatusList;
     private javax.swing.JTable orderTable;
     private javax.swing.JButton updateOrderStatusButton;

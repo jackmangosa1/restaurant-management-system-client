@@ -3,26 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/OrderStatus.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/LoginUI.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/MenuUI.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/EmployeeStatusService.java</file>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/CashierUI.java</file>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/Employee.java</file>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/CustomerUI.java</file>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/AdminUI.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/drink%20(1).png</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/CustomerOrder.java</file>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/DishCategoryService.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/DashboardUI.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/EmployeeStatus.java</file>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/RegisterUI.java</file>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/Dish.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/DishCategory.java</file>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/OrderItemService.java</file>
-            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/Customer.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/SessionManager.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/KitchenUI.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/food%20(2)%20(1).png</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/EmployeeRole.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/CartItem.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/OrderItem.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/CustomerOrderService.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/OrderStatus.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/cfcc9127-fadb-49b2-9b92-a6679471837b%20(1).jpeg</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/CashierUI.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/food%20(1).png</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/Employee.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/CustomerUI.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/AdminUI.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/DishCategoryService.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/view/RegisterUI.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/Dish.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/OrderItemService.java</file>
+            <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/model/Customer.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/CustomerService.java</file>
             <file>file:/C:/Users/pc/OneDrive/Documents/NetBeansProjects/RMS-client/src/Service/OrderStatusService.java</file>
         </group>
