@@ -357,20 +357,18 @@ private String convertRolesToString(Set<EmployeeRole> roles) {
     }//GEN-LAST:event_updateStatusButtonActionPerformed
 
     private void addRoleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoleButtonActionPerformed
-        try{
-            
+         try {
         if (employeeToUpdate == null || employeeToUpdate.getEmployeeId() == null) {
             JOptionPane.showMessageDialog(this, "Please select an employee from the table.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-   
         String selectedRoleName = (String) employeeRole.getSelectedItem();
         if (selectedRoleName == null || selectedRoleName.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please select a role to add.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         Registry theRegistry = LocateRegistry.getRegistry("127.0.0.1", 6000);
         EmployeeService employeeService = (EmployeeService) theRegistry.lookup("employee");
         Employee existingEmployee = employeeService.searchEmployee(employeeToUpdate);
@@ -387,22 +385,24 @@ private String convertRolesToString(Set<EmployeeRole> roles) {
             JOptionPane.showMessageDialog(this, "Selected role not found in the database.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         if (existingEmployee.getRoles().contains(selectedRole)) {
             JOptionPane.showMessageDialog(this, "Role already assigned to the employee.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    
+
         existingEmployee.getRoles().add(selectedRole);
         Employee updatedEmployee = employeeService.updateEmployee(existingEmployee);
+
         if (updatedEmployee != null) {
             JOptionPane.showMessageDialog(this, "Role added to the employee");
             addDataToTable();
         } else {
             JOptionPane.showMessageDialog(this, "Failed to add role to the employee", "Input Error", JOptionPane.ERROR_MESSAGE);
         } 
-        } catch(Exception ex){
-            ex.printStackTrace();
-        }
+    } catch(Exception ex){
+        ex.printStackTrace();
+    }
     }//GEN-LAST:event_addRoleButtonActionPerformed
 
     private void removeRoleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRoleButtonActionPerformed
@@ -435,13 +435,14 @@ private String convertRolesToString(Set<EmployeeRole> roles) {
             return;
         }
 
-        existingEmployee.getRoles().remove(selectedRole);
-        Employee updatedEmployee = employeeService.updateEmployee(existingEmployee);
-        
         if (!existingEmployee.getRoles().contains(selectedRole)) {
             JOptionPane.showMessageDialog(this, "Selected role is not assigned to the employee.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
+        existingEmployee.getRoles().remove(selectedRole);
+        Employee updatedEmployee = employeeService.updateEmployee(existingEmployee);
+
         if (updatedEmployee != null) {
             JOptionPane.showMessageDialog(this, "Role removed from the employee");
             addDataToTable();

@@ -13,6 +13,7 @@ import java.rmi.registry.Registry;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -209,8 +210,12 @@ public class KitchenUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- int SelectedRowIndex = -1;
- int orderId;
+       public void updateButtonState(Set<EmployeeRole> roles) {
+        // Example: Disable or enable a button based on the roles
+        MenuToHome.setEnabled(!roles.stream().anyMatch(role -> role.hasRole("kitchen personnel"))); 
+    }
+    int SelectedRowIndex = -1;
+    int orderId;
    
    private void setupTableListener(){
       orderTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -370,8 +375,10 @@ public class KitchenUI extends javax.swing.JFrame {
     }//GEN-LAST:event_updateOrderStatusButtonActionPerformed
 
     private void MenuToHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuToHomeMouseClicked
+        Employee loggedInUser = SessionManager.getLoggedInEmployee();
         this.setVisible(false);
         CashierUI cashierUI = new CashierUI();
+        cashierUI.updateButtonState(loggedInUser.getRoles());
         cashierUI.setVisible(true);
     }//GEN-LAST:event_MenuToHomeMouseClicked
 

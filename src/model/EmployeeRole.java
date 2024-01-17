@@ -17,7 +17,11 @@ public class EmployeeRole implements Serializable {
     private int roleId;
     private String roleName;
     private Set<Employee> employees = new HashSet<>();
-        @Override
+    
+    public boolean hasRole(String roleName) {
+        return this.roleName.equals(roleName);
+    }
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

@@ -188,9 +188,32 @@ public class LoginUI extends javax.swing.JFrame {
             SessionManager.setLoggedInEmployee(theEmployee);
             JOptionPane.showMessageDialog(this, "Login Successful!");
             
+            Employee loggedInEmployee = SessionManager.getLoggedInEmployee();
+            if (loggedInEmployee.getRoles().stream().anyMatch(role -> role.hasRole("admin"))) {
+           
             this.setVisible(false);
             CashierUI cashierUI = new CashierUI();
             cashierUI.setVisible(true);
+          
+            } else if (loggedInEmployee.getRoles().stream().anyMatch(role -> role.hasRole("cashier"))) {
+                this.setVisible(false);
+                CashierUI cashierUI = new CashierUI();
+                cashierUI.updateButtonState(loggedInEmployee.getRoles());
+                cashierUI.setVisible(true);
+                
+            } else if (loggedInEmployee.getRoles().stream().anyMatch(role -> role.hasRole("kitchen personnel"))){
+                this.setVisible(false);
+                KitchenUI kitchenUI = new KitchenUI();
+                kitchenUI.updateButtonState(loggedInEmployee.getRoles());
+                kitchenUI.setVisible(true);      
+            } else{
+                this.setVisible(false);
+                DeliveryUI deliveryUI = new DeliveryUI();
+                deliveryUI.updateButtonState(loggedInEmployee.getRoles());
+                deliveryUI.setVisible(true);
+            }
+            
+            
       
         } else if( theEmployee != null && theEmployee.getStatus().getStatusId() == 2){
              JOptionPane.showMessageDialog(this, "Account Locked, contact the administrator", "Authentication Error", JOptionPane.ERROR_MESSAGE);

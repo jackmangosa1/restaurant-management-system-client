@@ -472,8 +472,10 @@ public class CustomerUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void CustomerToHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustomerToHomeMouseClicked
+       Employee loggedinUser = SessionManager.getLoggedInEmployee();
         this.setVisible(false);
         CashierUI cashierUI = new CashierUI();
+        cashierUI.updateButtonState(loggedinUser.getRoles());
         cashierUI.setVisible(true);
     }//GEN-LAST:event_CustomerToHomeMouseClicked
 

@@ -12,6 +12,7 @@ import java.rmi.registry.Registry;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -176,6 +177,10 @@ public class DeliveryUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+      public void updateButtonState(Set<EmployeeRole> roles) {
+        // Example: Disable or enable a button based on the roles
+        MenuToHome.setEnabled(!roles.stream().anyMatch(role -> role.hasRole("delivery personnel"))); 
+    }
     int SelectedRowIndex = -1;
     int orderId;
    
